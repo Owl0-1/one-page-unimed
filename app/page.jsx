@@ -12,6 +12,7 @@ import {
   Home,
   Info,
   MapPinCheckInside,
+  Menu,
   Phone,
   PhoneCall,
   Plane,
@@ -57,6 +58,152 @@ function Icon({ name, size = 18, style, className }) {
   const Cmp = icons[name];
   if (!Cmp) return null;
   return <Cmp size={size} style={style} className={className} />;
+}
+
+const NAV_ITEMS = [
+  "A UNIMED",
+  "NOSSAS UNIDADES",
+  "SEJA CLIENTE",
+  "ATENDIMENTO",
+  "ANS",
+  "PESQUISA DE SATISFAÇÃO",
+];
+
+function UnimedHeader() {
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+
+  useEffect(() => {
+    document.body.style.overflow = mobileMenuOpen ? "hidden" : "";
+    return () => { document.body.style.overflow = ""; };
+  }, [mobileMenuOpen]);
+
+  const closeMenu = () => setMobileMenuOpen(false);
+
+  return (
+    <header className="unimed-site-header">
+      {/* Accessibility bar — hidden on mobile */}
+      <div className="unimed-access-bar">
+        <div className="unimed-access-inner">
+          <div className="unimed-access-links">
+            <a href="#conteudo" className="unimed-access-link">
+              <span className="unimed-access-num">1</span>
+              Ir para o conteúdo
+            </a>
+            <a href="#menu" className="unimed-access-link">
+              <span className="unimed-access-num">2</span>
+              Ir para o menu
+            </a>
+            <a href="#busca" className="unimed-access-link">
+              <span className="unimed-access-num">3</span>
+              Ir para a busca
+            </a>
+          </div>
+          <div className="unimed-access-controls">
+            <button className="unimed-access-btn" title="Alto contraste">
+              <span className="unimed-access-ctrl-icon">◑</span>
+              Alto-contraste
+            </button>
+            <button className="unimed-access-btn" title="Aumentar fonte">
+              <span className="unimed-access-ctrl-icon">A+</span>
+              Aumentar fonte
+            </button>
+            <button className="unimed-access-btn" title="Diminuir fonte">
+              <span className="unimed-access-ctrl-icon">A-</span>
+              Diminuir fonte
+            </button>
+          </div>
+        </div>
+      </div>
+
+      {/* Main navigation */}
+      <div className="unimed-navbar" id="menu">
+        <div className="unimed-navbar-inner">
+          <a href="https://unimedfortaleza.com.br" className="unimed-logo-link" aria-label="Unimed Fortaleza — página inicial">
+            <img src="/assets/logo_unimed-fortaleza-01.png" alt="Unimed Fortaleza" style={{ height: 42 }} />
+          </a>
+
+          <nav className="unimed-nav" aria-label="Navegação principal">
+            {NAV_ITEMS.map((item) => (
+              <button key={item} className="unimed-nav-item">
+                {item}
+                <svg width="10" height="6" viewBox="0 0 10 6" fill="none" aria-hidden="true">
+                  <path d="M1 1l4 4 4-4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                </svg>
+              </button>
+            ))}
+          </nav>
+
+          <div className="unimed-navbar-actions" id="busca">
+            <a href="https://unimedfortaleza.com.br/comprar-plano" className="unimed-btn-buy">
+              COMPRAR PLANO
+            </a>
+            <a href="https://unimedfortaleza.com.br/cooperado" className="unimed-btn-outline unimed-desktop-only">
+              COOPERADO
+            </a>
+            <a href="https://unimedfortaleza.com.br/minha-unimed" className="unimed-btn-outline unimed-desktop-only">
+              MINHA UNIMED
+            </a>
+            <button className="unimed-btn-search unimed-desktop-only" aria-label="Buscar">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <circle cx="11" cy="11" r="7" stroke="currentColor" strokeWidth="2" />
+                <path d="M16.5 16.5L21 21" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+              </svg>
+            </button>
+            <button
+              className="unimed-hamburger"
+              onClick={() => setMobileMenuOpen((v) => !v)}
+              aria-label={mobileMenuOpen ? "Fechar menu" : "Abrir menu"}
+              aria-expanded={mobileMenuOpen}
+            >
+              {mobileMenuOpen ? <X size={20} /> : <Menu size={20} />}
+            </button>
+          </div>
+        </div>
+      </div>
+
+      {/* Mobile slide-down menu */}
+      {mobileMenuOpen && (
+        <div className="unimed-mobile-menu" role="dialog" aria-modal="true" aria-label="Menu de navegação">
+          <nav className="unimed-mobile-nav">
+            {NAV_ITEMS.map((item) => (
+              <button key={item} className="unimed-mobile-nav-item" onClick={closeMenu}>
+                {item}
+                <svg width="10" height="6" viewBox="0 0 10 6" fill="none" aria-hidden="true">
+                  <path d="M1 1l4 4 4-4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                </svg>
+              </button>
+            ))}
+          </nav>
+          <div className="unimed-mobile-actions">
+            <a
+              href="https://unimedfortaleza.com.br/comprar-plano"
+              className="unimed-btn-buy"
+              style={{ display: "flex", justifyContent: "center" }}
+              onClick={closeMenu}
+            >
+              COMPRAR PLANO
+            </a>
+            <a
+              href="https://unimedfortaleza.com.br/cooperado"
+              className="unimed-btn-outline"
+              style={{ display: "flex", justifyContent: "center" }}
+              onClick={closeMenu}
+            >
+              COOPERADO
+            </a>
+            <a
+              href="https://unimedfortaleza.com.br/minha-unimed"
+              className="unimed-btn-outline"
+              style={{ display: "flex", justifyContent: "center" }}
+              onClick={closeMenu}
+            >
+              MINHA UNIMED
+            </a>
+          </div>
+        </div>
+      )}
+    </header>
+  );
 }
 
 function ScrollHint({ show, onClick }) {
@@ -199,76 +346,6 @@ const _HERO_SVG = `
 </svg>
 `;
 
-const URGENTE_SVG = `
-<svg viewBox="0 0 480 520" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%">
-  <defs>
-    <linearGradient id="bgU" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" style="stop-color:#d8eedf"/>
-      <stop offset="100%" style="stop-color:#c0e0cc"/>
-    </linearGradient>
-    <linearGradient id="skU1" x1="0%" y1="0%" x2="0%" y2="100%">
-      <stop offset="0%" style="stop-color:#EAC4A0"/>
-      <stop offset="100%" style="stop-color:#D4A070"/>
-    </linearGradient>
-    <linearGradient id="skU2" x1="0%" y1="0%" x2="0%" y2="100%">
-      <stop offset="0%" style="stop-color:#C07040"/>
-      <stop offset="100%" style="stop-color:#A05030"/>
-    </linearGradient>
-    <linearGradient id="unifU" x1="0%" y1="0%" x2="0%" y2="100%">
-      <stop offset="0%" style="stop-color:#00843D"/>
-      <stop offset="100%" style="stop-color:#005A2B"/>
-    </linearGradient>
-  </defs>
-  <rect width="480" height="520" fill="url(#bgU)" rx="20"/>
-  <ellipse cx="240" cy="500" rx="200" ry="15" fill="rgba(0,0,0,0.08)"/>
-  <rect x="30" y="360" width="180" height="110" rx="12" fill="rgba(0,100,50,0.18)"/>
-  <rect x="30" y="360" width="70" height="60" rx="6" fill="rgba(150,200,170,0.3)"/>
-  <text x="90" y="400" text-anchor="middle" font-family="Poppins,sans-serif" font-size="9" fill="rgba(0,80,30,0.6)" font-weight="700">UNIMED URGENTE</text>
-  <rect x="155" y="380" width="9" height="24" rx="2" fill="rgba(0,132,61,0.5)"/>
-  <rect x="150" y="388" width="19" height="8" rx="2" fill="rgba(0,132,61,0.5)"/>
-
-  <rect x="130" y="390" width="160" height="18" rx="8" fill="#e8e0d0" stroke="#c8c0b0" stroke-width="1.5"/>
-  <rect x="145" y="406" width="22" height="72" rx="10" fill="#8090a0"/>
-  <rect x="173" y="406" width="22" height="72" rx="10" fill="#6a7a8a"/>
-  <ellipse cx="156" cy="480" rx="18" ry="7" fill="#2a2a2a"/>
-  <ellipse cx="184" cy="480" rx="18" ry="7" fill="#2a2a2a"/>
-  <path d="M128 280 Q130 262 165 257 Q200 262 202 280 L208 398 H122 Z" fill="#b8c8e0"/>
-  <path d="M202 290 Q220 320 222 355" stroke="#b8c8e0" stroke-width="22" stroke-linecap="round" fill="none"/>
-  <path d="M128 290 Q108 310 102 340" stroke="#b8c8e0" stroke-width="22" stroke-linecap="round" fill="none"/>
-  <rect x="158" y="232" width="14" height="26" rx="7" fill="url(#skU2)"/>
-  <ellipse cx="165" cy="212" rx="36" ry="38" fill="url(#skU2)"/>
-  <path d="M130 205 Q131 174 165 170 Q199 174 200 205 Q188 184 165 182 Q142 184 130 205 Z" fill="#b0b0b0"/>
-  <path d="M150 210 Q152 207 156 210" stroke="rgba(80,40,10,0.3)" stroke-width="1.2" fill="none"/>
-  <path d="M174 210 Q178 207 181 210" stroke="rgba(80,40,10,0.3)" stroke-width="1.2" fill="none"/>
-  <ellipse cx="153" cy="212" rx="4.5" ry="4" fill="#3a2a1a"/>
-  <ellipse cx="177" cy="212" rx="4.5" ry="4" fill="#3a2a1a"/>
-  <path d="M157 226 Q165 232 173 226" stroke="#8a4a2a" stroke-width="2" fill="none" stroke-linecap="round"/>
-
-  <rect x="295" y="404" width="26" height="96" rx="12" fill="#1a3a22"/>
-  <rect x="327" y="410" width="26" height="90" rx="12" fill="#152e1a"/>
-  <ellipse cx="308" cy="502" rx="20" ry="8" fill="#0a0a0a"/>
-  <ellipse cx="340" cy="502" rx="20" ry="8" fill="#0a0a0a"/>
-  <path d="M278 280 Q280 260 315 254 Q350 260 352 280 L360 412 H270 Z" fill="url(#unifU)"/>
-  <rect x="309" y="274" width="12" height="28" rx="3" fill="rgba(255,255,255,0.95)"/>
-  <rect x="302" y="280" width="26" height="12" rx="3" fill="rgba(255,255,255,0.95)"/>
-  <path d="M278 292 Q240 330 220 355" stroke="url(#unifU)" stroke-width="28" stroke-linecap="round" fill="none"/>
-  <path d="M352 288 Q370 310 372 340" stroke="url(#unifU)" stroke-width="28" stroke-linecap="round" fill="none"/>
-  <ellipse cx="219" cy="357" rx="16" ry="13" fill="url(#skU1)"/>
-  <ellipse cx="372" cy="343" rx="16" ry="13" fill="url(#skU1)"/>
-  <rect x="308" y="224" width="16" height="32" rx="8" fill="url(#skU1)"/>
-  <ellipse cx="316" cy="202" rx="40" ry="44" fill="url(#skU1)"/>
-  <path d="M277 196 Q278 160 316 155 Q354 160 355 196 Q344 174 316 171 Q288 174 277 196 Z" fill="#1a0a05"/>
-  <ellipse cx="302" cy="200" rx="5" ry="4.5" fill="#1a0a05"/>
-  <ellipse cx="330" cy="200" rx="5" ry="4.5" fill="#1a0a05"/>
-  <ellipse cx="303" cy="199" rx="1.8" ry="1.8" fill="white"/>
-  <ellipse cx="331" cy="199" rx="1.8" ry="1.8" fill="white"/>
-  <path d="M296 190 Q302 186 309 189" stroke="#1a0a05" stroke-width="2.5" fill="none"/>
-  <path d="M323 189 Q330 186 336 190" stroke="#1a0a05" stroke-width="2.5" fill="none"/>
-  <path d="M306 215 Q316 222 326 215" stroke="#a06040" stroke-width="2" fill="none" stroke-linecap="round"/>
-  <path d="M276 192 Q277 155 316 150 Q355 155 356 192 Z" fill="#00521e"/>
-  <rect x="275" y="186" width="82" height="8" rx="4" fill="#003814"/>
-</svg>
-`;
 
 export default function Page() {
   const [tweaksOpen, setTweaksOpen] = useState(false);
@@ -365,6 +442,8 @@ export default function Page() {
 
   return (
     <>
+      <UnimedHeader />
+
       <nav className="anchor-nav">
         <div className="container">
           <div className="anchor-nav-inner">
@@ -450,10 +529,10 @@ export default function Page() {
                     <Icon name="heart-pulse" size={18} />
                   </div>
                   <div className="hero-info-text">
-                    <strong>Fast time at the health center</strong>
+                    <strong>Atendimento rápido no centro de saúde</strong>
                     <span>
-                      Fast time at the health center, usually within 24 hours. Licensed and experienced healthcare
-                      professionals.
+                      Atendimento rápido no centro de saúde, geralmente em até 24 horas. Profissionais de saúde
+                      licenciados e experientes.
                     </span>
                   </div>
                 </div>
@@ -580,13 +659,14 @@ export default function Page() {
 
             </div>
 
-            {/* Ilustração original ficou grande; você pode colar 1:1 do HTML aqui se quiser 100% igual */}
             <div className="fig-wrap col-img">
-              <div className="fig-main" style={{ height: 520 }} />
-              <div
-                style={{ position: "absolute", inset: 0 }}
-                dangerouslySetInnerHTML={{ __html: URGENTE_SVG }}
-              />
+              <div className="fig-main" style={{ height: 520 }}>
+                <img
+                  src="/assets/medicos-urgente.png"
+                  alt=""
+                  style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }}
+                />
+              </div>
               <div className="fig-badge" style={{ bottom: -18, right: 24 }}>
                 <div className="fb-icon">
                   <Icon name="heart-pulse" size={18} />
@@ -605,7 +685,13 @@ export default function Page() {
         <div className="container">
           <div className="split reverse">
             <div className="fig-wrap col-img">
-              <div className="fig-main" style={{ height: 500 }} />
+              <div className="fig-main" style={{ height: 500 }}>
+                <img
+                  src="/assets/area-protegia.png"
+                  alt=""
+                  style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }}
+                />
+              </div>
               <div className="fig-badge" style={{ bottom: -18, left: 24 }}>
                 <div className="fb-icon">
                   <Icon name="building-2" size={18} />
@@ -618,11 +704,13 @@ export default function Page() {
             </div>
 
             <div>
-              <div className="tag-pill">
-                <Icon name="building-2" size={13} />
-                Disponível para empresas não clientes Unimed
+              <div style={{ display: "flex", alignItems: "center", gap: 20 }}>
+                <div className="label-tag">Serviço 02</div>
+                <div className="tag-pill">
+                  <Icon name="building-2" size={13} />
+                  Disponível para empresas não clientes Unimed
+                </div>
               </div>
-              <div className="label-tag">Serviço 02</div>
               <h2 style={{ marginBottom: 16 }}>
                 Unimed Urgente Área Protegida: Segurança para o seu negócio.
               </h2>
@@ -676,6 +764,7 @@ export default function Page() {
               <a
                 href="https://unimedfortaleza.com.br/minha-unimed/cliente/opcionais"
                 className="btn-green"
+                style={{ width: "100%", justifyContent: "center" }}
               >
                 <Icon name="building-2" size={15} />
                 Solicitar orçamento para minha empresa
@@ -768,23 +857,24 @@ export default function Page() {
                 </div>
               </div>
 
-              <div className="cta-strip dark" style={{ marginTop: 32 }}>
-                <p>
-                  Onde quer que você esteja no Brasil, o Aeromédico Unimed garante atendimento de excelência.
-                </p>
-                <a
-                  href="https://unimedfortaleza.com.br/minha-unimed/cliente/opcionais"
-                  className="btn-white"
-                  style={{ whiteSpace: "nowrap", flexShrink: 0 }}
-                >
-                  <Icon name="plus-circle" size={15} />
-                  Contratar
-                </a>
-              </div>
+              <a
+                href="https://unimedfortaleza.com.br/minha-unimed/cliente/opcionais"
+                className="btn-white"
+                style={{ marginTop: 32, display: "flex", width: "100%", justifyContent: "center" }}
+              >
+                <Icon name="plus-circle" size={15} />
+                Contratar
+              </a>
             </div>
 
             <div className="fig-wrap col-img">
-              <div className="fig-main" style={{ height: 560, background: "rgba(255,255,255,0.04)" }} />
+              <div className="fig-main" style={{ height: 560, background: "rgba(255,255,255,0.04)" }}>
+                <img
+                  src="/assets/eli.png"
+                  alt=""
+                  style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }}
+                />
+              </div>
               <div
                 className="fig-badge"
                 style={{
@@ -809,11 +899,11 @@ export default function Page() {
 
       <section className="section" id="como-solicitar">
         <div className="container">
-          <div style={{ textAlign: "center", marginBottom: 56 }}>
+          <div style={{ textAlign: "center", marginBottom: 32 }}>
             <div className="label-tag" style={{ display: "block", textAlign: "center" }}>
               Como acionar
             </div>
-            <h2 style={{ fontSize: "clamp(24px,2.8vw,36px)", maxWidth: 500, margin: "0 auto" }}>
+            <h2 style={{ fontSize: "clamp(20px,2.2vw,28px)", maxWidth: 440, margin: "0 auto" }}>
               Precisou acionar? A agilidade é a nossa prioridade.
             </h2>
           </div>
@@ -893,32 +983,18 @@ export default function Page() {
       <section id="cta-final">
         <div className="container">
           <div className="cta-final-inner">
-            <div>
-              <div className="label-tag white">Adicione agora</div>
-              <h2>
-                Sua proteção começa com <em>uma decisão</em>.
-              </h2>
-              <p>
-                Escolha o serviço que melhor atende às suas necessidades e adicione ao plano hoje. Proteção completa para você e toda a família.
-              </p>
-              <div className="cta-final-btns">
-                <a
-                  href="https://unimedfortaleza.com.br/minha-unimed/cliente/opcionais"
-                  className="btn-green"
-                  style={{ fontSize: 15, padding: "15px 32px" }}
-                >
-                  <Icon name="plus-circle" size={17} />
-                  Adicionar ao meu plano
-                </a>
-                <a href="tel:08002750123" className="btn-ghost">
-                  <Icon name="phone" size={16} />
-                  0800 275 0123
-                </a>
-              </div>
-            </div>
-            <div className="fig-wrap col-img">
-              <div className="fig-main" style={{ height: 320, background: "rgba(255,255,255,0.04)" }} />
-            </div>
+            <h2>
+              Sua proteção começa com <em>uma decisão</em>.
+            </h2>
+            <p>
+              Adicione ao seu plano hoje e garanta atendimento ágil para você e sua família. Reduza riscos e tenha suporte quando mais precisar.
+            </p>
+            <a
+              href="https://unimedfortaleza.com.br/minha-unimed/cliente/opcionais"
+              className="cta-final-btn"
+            >
+              Adicionar ao meu plano
+            </a>
           </div>
         </div>
       </section>
@@ -928,9 +1004,9 @@ export default function Page() {
           <div className="footer-grid">
             <div className="footer-brand">
               <img
-                src="/assets/logo-wordmark.svg"
+                src="/assets/logo_unimed-fortaleza-01.png"
                 alt="Unimed Fortaleza"
-                style={{ height: 26, filter: "brightness(0)invert(1)", opacity: 0.75 }}
+                style={{ height: 42 }}
               />
               <p>Cuidando de você e de quem você ama com excelência, humanização e tecnologia.</p>
               <div className="footer-phone">
