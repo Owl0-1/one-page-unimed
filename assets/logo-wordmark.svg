@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 48" width="200" height="48">
+  <rect width="48" height="48" rx="6" fill="#187BF0"></rect>
+  <text x="5" y="38" font-family="Poppins, sans-serif" font-weight="900" font-size="38" fill="white">U.</text>
+  <text x="60" y="32" font-family="Poppins, sans-serif" font-weight="700" font-size="22" fill="#031604">Unimed</text>
+  <text x="60" y="46" font-family="Poppins, sans-serif" font-weight="400" font-size="12" fill="#626B84">Design System</text>
+</svg>

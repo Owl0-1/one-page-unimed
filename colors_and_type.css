@@ -1,0 +1,262 @@
+/* ============================================================
+   UNI DS — Unimed Design System
+   Colors & Typography CSS Custom Properties
+   ============================================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;900&family=Inter:wght@400;500;600;700&display=swap');
+
+/* NOTE: "Unimed Sans" is a proprietary brand font used only for the
+   "U." logo mark. We substitute Poppins Black (weight 900) as a
+   fallback. Supply the actual font files in fonts/ and update
+   the @font-face below. */
+
+/* @font-face {
+  font-family: "Unimed Sans";
+  src: url("fonts/UnimedSans-Bold.woff2") format("woff2");
+  font-weight: 700;
+  font-style: normal;
+} */
+
+:root {
+
+  /* ── FONT FAMILIES ─────────────────────────────────────── */
+  --font-display:  "Unimed Sans", "Poppins", sans-serif; /* logo mark only */
+  --font-heading:  "Poppins", sans-serif;
+  --font-body:     "Poppins", sans-serif;
+  --font-data:     "Inter", sans-serif;
+
+  /* ── GLOBAL COLOR TOKENS — GREYSCALE ───────────────────── */
+  --color-global-white:    #FFFFFF;
+  --color-global-grey10:   #FAFAFA;
+  --color-global-grey20:   #EBEBF0;
+  --color-global-grey30:   #D9DCE2;
+  --color-global-grey40:   #C4C4CF;
+  --color-global-grey50:   #A6A6B0;
+  --color-global-grey60:   #808089;
+  --color-global-grey70:   #64646D;
+  --color-global-grey80:   #515158;
+  --color-global-grey90:   #38383D;
+  --color-global-grey100:  #27272A;
+  --color-global-black:    #121212;
+
+  /* ── GLOBAL COLOR TOKENS — GREEN ───────────────────────── */
+  --color-global-green10:  #EFFFF4;
+  --color-global-green20:  #D7FAE0;
+  --color-global-green30:  #B7EFC3;
+  --color-global-green40:  #78DA90;
+  --color-global-green50:  #2DC26D;
+  --color-global-green60:  #00AB56;
+  --color-global-green70:  #079449;
+  --color-global-green80:  #007D3A;
+  --color-global-green90:  #04592C;
+  --color-global-green100: #03401F;
+
+  /* ── GLOBAL COLOR TOKENS — BLUE ────────────────────────── */
+  --color-global-blue10:   #E5F3FF;
+  --color-global-blue20:   #BBDFFF;
+  --color-global-blue30:   #8FCCFF;
+  --color-global-blue40:   #60B7FF;
+  --color-global-blue50:   #3AA7FF;
+  --color-global-blue60:   #0F98FF;
+  --color-global-blue70:   #187BF0;
+  --color-global-blue80:   #1577E0;
+  --color-global-blue90:   #1566CE;
+  --color-global-blue100:  #1347AF;
+
+  /* ── GLOBAL COLOR TOKENS — RED ─────────────────────────── */
+  --color-global-red10:    #FFF0F1;
+  --color-global-red20:    #FFDBDE;
+  --color-global-red30:    #FFB8BC;
+  --color-global-red40:    #FF99A0;
+  --color-global-red50:    #FF707A;
+  --color-global-red60:    #FF424E;
+  --color-global-red70:    #D93843;
+  --color-global-red80:    #BF1D28;
+  --color-global-red90:    #910F17;
+  --color-global-red100:   #6E0B12;
+
+  /* ── GLOBAL COLOR TOKENS — YELLOW ──────────────────────── */
+  --color-global-yellow10:  #FFFCED;
+  --color-global-yellow20:  #FFF5C7;
+  --color-global-yellow30:  #FFE880;
+  --color-global-yellow40:  #FFD530;
+  --color-global-yellow50:  #FFC400;
+  --color-global-yellow60:  #FFB700;
+  --color-global-yellow70:  #E59900;
+  --color-global-yellow80:  #CC8100;
+  --color-global-yellow90:  #B26500;
+  --color-global-yellow100: #995200;
+
+  /* ── GLOBAL COLOR TOKENS — ORANGE ──────────────────────── */
+  --color-global-orange10:  #FFF5EB;
+  --color-global-orange20:  #FFE2C6;
+  --color-global-orange30:  #FFD1A4;
+  --color-global-orange40:  #FFB56C;
+  --color-global-orange50:  #FF9F41;
+  --color-global-orange60:  #FC820A;
+  --color-global-orange70:  #E36301;
+  --color-global-orange80:  #B64F00;
+  --color-global-orange90:  #903F00;
+  --color-global-orange100: #6C2F00;
+
+  /* ── GLOBAL COLOR TOKENS — PURPLE ──────────────────────── */
+  --color-global-purple10:  #F5F1FD;
+  --color-global-purple20:  #E9E1FD;
+  --color-global-purple30:  #DED0FE;
+  --color-global-purple40:  #BFA4FE;
+  --color-global-purple50:  #A079FC;
+  --color-global-purple60:  #8352FA;
+  --color-global-purple70:  #733DF2;
+  --color-global-purple80:  #6028E0;
+  --color-global-purple90:  #4617B2;
+  --color-global-purple100: #371585;
+
+  /* ── GLOBAL COLOR TOKENS — ROSE ────────────────────────── */
+  --color-global-rose10:   #FCE5F0;
+  --color-global-rose20:   #F7BDD9;
+  --color-global-rose30:   #F492C0;
+  --color-global-rose40:   #F365A7;
+  --color-global-rose50:   #F14191;
+  --color-global-rose60:   #F2157B;
+  --color-global-rose70:   #E01577;
+  --color-global-rose80:   #C91571;
+  --color-global-rose90:   #B3136B;
+  --color-global-rose100:  #8D1061;
+
+  /* ── BRAND COLOR TOKENS ─────────────────────────────────── */
+  --color-uni-green:       #00995D;  /* Unimed signature green */
+  --color-uni-grey:        #626B84;  /* Unimed grey */
+  --color-uni-deep-green:  #031604;  /* Unimed deep green (near-black) */
+
+  /* ── ALIAS TOKENS — SEMANTIC ───────────────────────────── */
+  --color-alias-brand:           #187BF0;  /* primary interactive blue */
+  --color-alias-green-brand:     #187BF0;  /* mapped to blue in token alias */
+  --color-alias-grey-brand:      #626B84;
+  --color-alias-negative:        #FF424E;  /* error / destructive */
+  --color-alias-on-negative:     #FFFFFF;
+  --color-alias-focus:           #8FCCFF;  /* focus ring */
+  --color-alias-hiperlink:       #1577E0;  /* hyperlink */
+  --color-alias-outline:         #D9DCE2;
+  --color-alias-outline-overlay: rgba(10, 15, 52, 0.20);
+  --color-alias-skeleton:        rgba(18, 18, 18, 0.05);
+  --color-alias-disable:         rgba(18, 18, 18, 0.05);
+  --color-alias-disable-variant: #121212;
+  --color-alias-theme:           #FAFAFA;
+  --color-alias-theme-variant:   #FFFFFF;
+
+  /* ── SEMANTIC ROLE TOKENS ───────────────────────────────── */
+  --color-bg:              #FFFFFF;
+  --color-bg-subtle:       #FAFAFA;
+  --color-fg:              #1B2124;   /* rgb(27,33,36) */
+  --color-fg-muted:        #707070;
+  --color-fg-subtle:       #A6A6B0;
+  --color-border:          #EBEBF0;
+  --color-border-strong:   #D9DCE2;
+  --color-primary:         #187BF0;
+  --color-primary-hover:   #1577E0;
+  --color-success:         #00995D;
+  --color-error:           #FF424E;
+  --color-warning:         #FFC400;
+
+  /* ── ELEVATION ──────────────────────────────────────────── */
+  --elevation-one: 0px 4px 16px rgba(0, 0, 0, 0.08);
+
+  /* ── BORDER RADIUS ──────────────────────────────────────── */
+  --radius-2:      2px;
+  --radius-4:      4px;
+  --radius-8:      8px;
+  --radius-12:     12px;
+  --radius-16:     16px;
+  --radius-pill:   9999px;
+  --radius-circle: 50%;
+
+  /* ── SPACING ────────────────────────────────────────────── */
+  --space-1:   4px;
+  --space-2:   8px;
+  --space-3:   12px;
+  --space-4:   16px;
+  --space-5:   20px;
+  --space-6:   24px;
+  --space-8:   32px;
+  --space-10:  40px;
+  --space-12:  48px;
+  --space-16:  64px;
+
+  /* ── TYPOGRAPHY SCALE ───────────────────────────────────── */
+  /* Display */
+  --text-h1-plus-size:   64px;
+  --text-h1-plus-weight: 700;
+  --text-h1-plus-line:   1.2;
+
+  /* Headings */
+  --text-h1-size:   42px;
+  --text-h1-weight: 400;
+  --text-h1-line:   1.2;
+
+  --text-h2-size:   32px;
+  --text-h2-weight: 500;
+  --text-h2-line:   1.25;
+
+  --text-h3-size:   28px;
+  --text-h3-weight: 700;
+  --text-h3-line:   1.2;
+
+  --text-h4-size:   24px;
+  --text-h4-weight: 500;
+  --text-h4-line:   1.33;
+
+  --text-h5-size:   20px;
+  --text-h5-weight: 500;
+  --text-h5-line:   1.4;
+
+  --text-h6-size:   16px;
+  --text-h6-weight: 600;
+  --text-h6-line:   1.5;
+
+  /* Body */
+  --text-p16-size:   16px;
+  --text-p16-weight: 400;
+  --text-p16-line:   1.5;
+
+  --text-p14-size:   14px;
+  --text-p14-weight: 400;
+  --text-p14-line:   1.7;
+
+  --text-p12-size:   12px;
+  --text-p12-weight: 400;
+  --text-p12-line:   1.5;
+
+  /* Labels */
+  --text-l12-size:   12px;
+  --text-l12-weight: 500;
+  --text-l12-line:   1.5;
+}
+
+/* ── SEMANTIC ELEMENT DEFAULTS ──────────────────────────── */
+
+body {
+  font-family: var(--font-body);
+  font-size: var(--text-p14-size);
+  font-weight: var(--text-p14-weight);
+  line-height: var(--text-p14-line);
+  color: var(--color-fg);
+  background-color: var(--color-bg);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+h1 { font-family: var(--font-heading); font-size: var(--text-h1-size); font-weight: var(--text-h1-weight); line-height: var(--text-h1-line); color: var(--color-fg); }
+h2 { font-family: var(--font-heading); font-size: var(--text-h2-size); font-weight: var(--text-h2-weight); line-height: var(--text-h2-line); color: var(--color-fg); }
+h3 { font-family: var(--font-heading); font-size: var(--text-h3-size); font-weight: var(--text-h3-weight); line-height: var(--text-h3-line); color: var(--color-fg); }
+h4 { font-family: var(--font-heading); font-size: var(--text-h4-size); font-weight: var(--text-h4-weight); line-height: var(--text-h4-line); color: var(--color-fg); }
+h5 { font-family: var(--font-heading); font-size: var(--text-h5-size); font-weight: var(--text-h5-weight); line-height: var(--text-h5-line); color: var(--color-fg); }
+h6 { font-family: var(--font-heading); font-size: var(--text-h6-size); font-weight: var(--text-h6-weight); line-height: var(--text-h6-line); color: var(--color-fg); }
+
+p  { font-size: var(--text-p14-size); line-height: var(--text-p14-line); }
+
+a  { color: var(--color-alias-hiperlink); text-decoration: underline; }
+a:hover { color: var(--color-primary-hover); }
+
+code, pre { font-family: var(--font-data); font-size: 13px; }
+
+label { font-size: var(--text-l12-size); font-weight: var(--text-l12-weight); color: var(--color-fg); }
