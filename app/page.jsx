@@ -255,7 +255,7 @@ const _HERO_SVG = `
       <stop offset="100%" style="stop-color:#B06840"/>
     </linearGradient>
     <linearGradient id="uniformGrad" x1="0%" y1="0%" x2="0%" y2="100%">
-      <stop offset="0%" style="stop-color:#00843D"/>
+      <stop offset="0%" style="stop-color:#00995D"/>
       <stop offset="100%" style="stop-color:#005A2B"/>
     </linearGradient>
     <radialGradient id="glow" cx="50%" cy="40%" r="50%">
@@ -267,7 +267,7 @@ const _HERO_SVG = `
   <ellipse cx="300" cy="280" rx="280" ry="260" fill="url(#glow)"/>
   <ellipse cx="300" cy="650" rx="240" ry="22" fill="rgba(0,0,0,0.3)"/>
 
-  <rect x="380" y="510" width="28" height="120" rx="12" fill="#1a3a22"/>
+  <rect x="380" y="510" width="28" height="120" rx="12" fill="#08484c"/>
   <rect x="416" y="510" width="28" height="120" rx="12" fill="#152e1a"/>
   <ellipse cx="394" cy="632" rx="20" ry="8" fill="#0a0a0a"/>
   <ellipse cx="430" cy="632" rx="20" ry="8" fill="#0a0a0a"/>
@@ -295,7 +295,7 @@ const _HERO_SVG = `
   <path d="M362 290 Q363 252 400 248 Q437 252 438 290 Z" fill="url(#uniformGrad)"/>
   <rect x="360" y="285" width="80" height="8" rx="4" fill="var(--green-dark,#005A2B)" opacity="0.8"/>
 
-  <rect x="230" y="510" width="30" height="122" rx="13" fill="#1a3a22"/>
+  <rect x="230" y="510" width="30" height="122" rx="13" fill="#08484c"/>
   <rect x="268" y="515" width="30" height="117" rx="13" fill="#152e1a"/>
   <ellipse cx="245" cy="634" rx="22" ry="9" fill="#0a0a0a"/>
   <ellipse cx="283" cy="634" rx="22" ry="9" fill="#0a0a0a"/>
@@ -406,9 +406,9 @@ export default function Page() {
 
   const setHero = (theme) => {
     const themes = {
-      floresta: { c1: "#1a3a22", c2: "#0a2015" },
+      floresta: { c1: "#08484c", c2: "#0a2015" },
       escuro: { c1: "#003020", c2: "#001a0c" },
-      verdeVivo: { c1: "#005A2B", c2: "#00843D" },
+      verdeVivo: { c1: "#005A2B", c2: "#00995D" },
     };
     const t = themes[theme] ?? themes.floresta;
 
@@ -587,10 +587,10 @@ export default function Page() {
                   <Icon name="users" size={18} />
                 </div>
                 <div className="tm-text">
-                  <strong>12.000+</strong>
+                  <strong>100.000+</strong>
                   <span>
-                    Usuários já fazem parte e contam com atendimento pré-hospitalar, orientação imediata e remoção
-                    segura quando necessário.
+                    usuários já fazem parte e contam com atendimento pré-hospitalar e
+                    remoção terrestre.
                   </span>
                 </div>
               </div>
@@ -841,41 +841,49 @@ export default function Page() {
             </div>
 
             <div className="split-service__bottom">
-              <div className="cards-2col">
-                <div className="mini-card">
-                  <div className="mc-icon">
-                    <Icon name="map-pin-check-inside" size={18} />
+              <div style={{ marginTop: 32 }}>
+                <div className="feature-row feature-row--dark">
+                  <div className="fr-icon dark">
+                    <Icon name="map-pin-check-inside" size={20} />
                   </div>
-                  <h4>Cobertura no Local</h4>
-                  <p>Atendimento ágil sem exigência de plano ativo.</p>
+                  <div className="fr-text white">
+                    <strong>Cobertura no Local</strong>
+                    <p>Atendimento ágil sem exigência de plano ativo.</p>
+                  </div>
                 </div>
-                <div className="mini-card">
-                  <div className="mc-icon">
-                    <Icon name="shield" size={18} />
+                <div className="feature-row feature-row--dark">
+                  <div className="fr-icon dark">
+                    <Icon name="shield" size={20} />
                   </div>
-                  <h4>Redução de Riscos</h4>
-                  <p>Suporte imediato em acidentes ou mal súbitos.</p>
+                  <div className="fr-text white">
+                    <strong>Redução de Riscos</strong>
+                    <p>Suporte imediato em acidentes ou mal súbitos.</p>
+                  </div>
                 </div>
-                <div className="mini-card">
-                  <div className="mc-icon">
-                    <Icon name="truck" size={18} />
+                <div className="feature-row feature-row--dark">
+                  <div className="fr-icon dark">
+                    <Icon name="truck" size={20} />
                   </div>
-                  <h4>Remoção para a Emergência Certa</h4>
-                  <p>Garantimos o transporte para a unidade hospitalar adequada ao perfil do paciente (Privada ou SUS).</p>
+                  <div className="fr-text white">
+                    <strong>Remoção para a Emergência Certa</strong>
+                    <p>Garantimos o transporte para a unidade hospitalar adequada ao perfil do paciente (Privada ou SUS).</p>
+                  </div>
                 </div>
-                <div className="mini-card">
-                  <div className="mc-icon">
-                    <Icon name="signpost" size={18} />
+                <div className="feature-row feature-row--dark">
+                  <div className="fr-icon dark">
+                    <Icon name="signpost" size={20} />
                   </div>
-                  <h4>Sinalização Área Protegida</h4>
-                  <p>Espaço da empresa sinalizado, transmitindo segurança e cuidado, e colaboradores treinados em como acionar o atendimento.</p>
+                  <div className="fr-text white">
+                    <strong>Sinalização Área Protegida</strong>
+                    <p>Espaço da empresa sinalizado, transmitindo segurança e cuidado, e colaboradores treinados em como acionar o atendimento.</p>
+                  </div>
                 </div>
               </div>
 
               <a
                 href="https://unimedfortaleza.com.br/minha-unimed/cliente/opcionais"
                 className="btn-green"
-                style={{ width: "100%", justifyContent: "center" }}
+                style={{ width: "100%", justifyContent: "center", marginTop: 32 }}
               >
                 <Icon name="building-2" size={15} />
                 Solicitar orçamento
@@ -967,7 +975,7 @@ export default function Page() {
 
             <div className="sol-block">
               <h3>
-                <span className="dot" style={{ background: "#00843D" }} />
+                <span className="dot" style={{ background: "#00995D" }} />
                 Área Protegida
               </h3>
               <div className="steps">
@@ -1021,75 +1029,46 @@ export default function Page() {
         </div>
       </section>
 
-      <footer>
-        <div className="container">
-          <div className="footer-grid">
-            <div className="footer-brand">
-              <img
-                src="/assets/logo_unimed-fortaleza-01.png"
-                alt="Unimed Fortaleza"
-                style={{ height: 42 }}
-              />
-              <p>Cuidando de você e de quem você ama com excelência, humanização e tecnologia.</p>
-              <div className="footer-phone">
-                <Icon name="phone" size={14} />0800 275 0123
-              </div>
-            </div>
-            <div className="footer-col">
-              <h5>Serviços</h5>
-              <ul>
-                <li>
-                  <a href="#unimed-urgente">Unimed Urgente</a>
-                </li>
-                <li>
-                  <a href="#area-protegida">Área Protegida</a>
-                </li>
-                <li>
-                  <a href="#aeromedico">Aeromédico</a>
-                </li>
-                <li>
-                  <a href="#">Planos de Saúde</a>
-                </li>
-              </ul>
-            </div>
-            <div className="footer-col">
-              <h5>Beneficiário</h5>
-              <ul>
-                <li>
-                  <a href="#">Minha Unimed</a>
-                </li>
-                <li>
-                  <a href="#">Reembolso</a>
-                </li>
-                <li>
-                  <a href="#">Guia Médico</a>
-                </li>
-                <li>
-                  <a href="#">Ouvidoria</a>
-                </li>
-              </ul>
-            </div>
-            <div className="footer-col">
-              <h5>Empresa</h5>
-              <ul>
-                <li>
-                  <a href="#">Sobre a Unimed</a>
-                </li>
-                <li>
-                  <a href="#">Cooperativismo</a>
-                </li>
-                <li>
-                  <a href="#">Trabalhe Conosco</a>
-                </li>
-                <li>
-                  <a href="#">Imprensa</a>
-                </li>
-              </ul>
-            </div>
+      <footer className="footer-bar">
+        <div className="footer-bar-shield">
+          <ShieldCheck size={22} strokeWidth={1.8} />
+        </div>
+
+        <div className="footer-bar-inner">
+          {/* Center — copyright & address */}
+          <div className="footer-bar-center">
+            <p className="footer-bar-copy">
+              Unimed Fortaleza | 2026 - © Todos os direitos reservados
+            </p>
+            <p className="footer-bar-address">
+              Av. Santos Dumont, 949 – CEP: 60.150-160 – Fortaleza – Ceará | CNPJ: 05.868.278/0001-07
+            </p>
+            <p className="footer-bar-links">
+              <a href="#">Privacidade</a>
+              <span>|</span>
+              <a href="#">Termo de Uso</a>
+              <span>|</span>
+              <a href="#">Canal de Ética</a>
+            </p>
           </div>
-          <div className="footer-bottom">
-            <p>© 2025 Unimed Fortaleza. Todos os direitos reservados.</p>
-            <p>Registrada na ANS · CNPJ 07.950.369/0001-29</p>
+
+          {/* Right — social icons */}
+          <div className="footer-bar-social">
+            <a href="#" aria-label="Facebook" className="footer-social-btn">
+              <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+            </a>
+            <a href="#" aria-label="Instagram" className="footer-social-btn">
+              <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
+            </a>
+            <a href="#" aria-label="X (Twitter)" className="footer-social-btn">
+              <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+            </a>
+            <a href="#" aria-label="YouTube" className="footer-social-btn">
+              <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.95-1.96C18.88 4 12 4 12 4s-6.88 0-8.59.46A2.78 2.78 0 0 0 1.46 6.42 29 29 0 0 0 1 12a29 29 0 0 0 .46 5.58 2.78 2.78 0 0 0 1.95 1.96C5.12 20 12 20 12 20s6.88 0 8.59-.46a2.78 2.78 0 0 0 1.96-1.96A29 29 0 0 0 23 12a29 29 0 0 0-.46-5.58zM9.75 15.02V8.98L15.5 12l-5.75 3.02z"/></svg>
+            </a>
+            <a href="#" aria-label="LinkedIn" className="footer-social-btn">
+              <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg>
+            </a>
           </div>
         </div>
       </footer>
@@ -1106,7 +1085,7 @@ export default function Page() {
           <label>Cor primária</label>
           <input
             type="color"
-            defaultValue="#00843D"
+            defaultValue="#00995D"
             onInput={(e) => {
               const value = e.currentTarget.value;
               document.documentElement.style.setProperty("--green", value);
