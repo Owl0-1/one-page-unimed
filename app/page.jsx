@@ -13,6 +13,7 @@ import {
   Info,
   MapPinCheckInside,
   Menu,
+  Navigation,
   Phone,
   PhoneCall,
   Plane,
@@ -45,6 +46,7 @@ function Icon({ name, size = 18, style, className }) {
       users: Users,
       signpost: Signpost,
       globe: Globe,
+      navigation: Navigation,
       plane: Plane,
       "user-check": UserCheck,
       baby: Baby,
@@ -380,12 +382,11 @@ export default function Page() {
 
     const obs = new IntersectionObserver(
       (entries) => {
-        const visible = entries
-          .filter((e) => e.isIntersecting)
-          .sort((a, b) => (b.intersectionRatio ?? 0) - (a.intersectionRatio ?? 0))[0];
-        if (visible?.target?.id) setActiveAnchor(visible.target.id);
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) setActiveAnchor(entry.target.id);
+        });
       },
-      { threshold: 0.25 }
+      { rootMargin: "-48px 0px -50% 0px", threshold: 0 }
     );
 
     els.forEach((el) => obs.observe(el));
@@ -454,16 +455,16 @@ export default function Page() {
               Unimed Urgente
             </a>
             <a
-              href="#area-protegida"
-              className={activeAnchor === "area-protegida" ? "active" : ""}
-            >
-              Área Protegida
-            </a>
-            <a
               href="#aeromedico"
               className={activeAnchor === "aeromedico" ? "active" : ""}
             >
               Aeromédico
+            </a>
+            <a
+              href="#area-protegida"
+              className={activeAnchor === "area-protegida" ? "active" : ""}
+            >
+              Área Protegida
             </a>
           </div>
         </div>
@@ -490,11 +491,16 @@ export default function Page() {
                   Adicionar ao meu plano
                 </a>
                 <a
-                  href="https://unimedfortaleza.com.br/minha-unimed/cliente/opcionais"
+                  href="#unimed-urgente"
                   className="hero-btn hero-btn-secondary"
+                  onClick={(e) => { e.preventDefault(); scrollToFirstSection(); }}
                 >
                   Conhecer Serviços
                 </a>
+              </div>
+
+              <div className="hero-image-mobile" aria-hidden="true">
+                <img src="/assets/hero-photo.png" alt="" />
               </div>
 
               <div className="hero-social-proof" aria-label="Usuários que já fazem parte">
@@ -513,7 +519,7 @@ export default function Page() {
                   </span>
                 </div>
                 <p className="hero-social-proof-text">
-                  <strong>12.000+</strong> usuários já fazem parte
+                  <strong>100.000</strong> usuários já fazem parte e contam com atendimento pré-hospitalar e remoção terrestre.
                 </p>
               </div>
             </div>
@@ -569,10 +575,10 @@ export default function Page() {
                   <Icon name="shield-check" size={18} />
                 </div>
                 <div className="tm-text">
-                  <strong>95%</strong>
+                  <strong>99%</strong>
                   <span>
-                    Satisfação com o atendimento, refletindo agilidade, cuidado humanizado e suporte em momentos
-                    críticos.
+                    de satisfação com o atendimento, refletindo agilidade, cuidado e segurança
+                    na sua remoção.
                   </span>
                 </div>
               </div>
@@ -593,10 +599,9 @@ export default function Page() {
                   <Icon name="clock" size={18} />
                 </div>
                 <div className="tm-text">
-                  <strong>24h</strong>
+                  <strong>24h de suporte</strong>
                   <span>
-                    Suporte e acionamento 24h, todos os dias, com central preparada para orientar e mobilizar a equipe
-                    mais próxima.
+                    Com uma central preparada e uma equipe técnica especializada.
                   </span>
                 </div>
               </div>
@@ -607,8 +612,8 @@ export default function Page() {
 
       <section className="section" id="unimed-urgente">
         <div className="container">
-          <div className="split">
-            <div>
+          <div className="split split-service">
+            <div className="split-service__top">
               <div className="label-tag">Serviço 01</div>
               <h2 style={{ marginBottom: 16 }}>
                 Unimed Urgente: Segurança e Agilidade quando cada segundo conta.
@@ -617,7 +622,28 @@ export default function Page() {
                 Com mais de 30 anos de liderança em remoção terrestre, a Unimed Urgente une
                 tecnologia de ponta e humanização para oferecer o melhor atendimento pré-hospitalar.
               </p>
+            </div>
 
+            <div className="fig-wrap col-img">
+              <div className="fig-main" style={{ height: 520 }}>
+                <img
+                  src="/assets/Gemini_Generated_Image_kbpv54kbpv54kbpv.png"
+                  alt=""
+                  style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "95% center", display: "block", transform: "scale(1.25)", transformOrigin: "left center" }}
+                />
+              </div>
+              <div className="fig-badge" style={{ bottom: -18, right: 24 }}>
+                <div className="fb-icon">
+                  <Icon name="heart-pulse" size={18} />
+                </div>
+                <div>
+                  <strong>UTI Móvel</strong>
+                  <span>Equipada para alta complexidade</span>
+                </div>
+              </div>
+            </div>
+
+            <div className="split-service__bottom">
               <div style={{ marginTop: 32 }}>
                 <div className="feature-row">
                   <div className="fr-icon">
@@ -643,7 +669,7 @@ export default function Page() {
                   </div>
                   <div className="fr-text">
                     <strong>Equipe Especializada</strong>
-                    <p>Médicos, enfermeiros e condutores capacitados para situações de alta complexidade.</p>
+                    <p>Médicos e enfermeiros altamente qualificados em medicina aeroespacial.</p>
                   </div>
                 </div>
                 <div className="feature-row">
@@ -657,33 +683,136 @@ export default function Page() {
                 </div>
               </div>
 
-            </div>
-
-            <div className="fig-wrap col-img">
-              <div className="fig-main" style={{ height: 520 }}>
-                <img
-                  src="/assets/medicos-urgente.png"
-                  alt=""
-                  style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }}
-                />
-              </div>
-              <div className="fig-badge" style={{ bottom: -18, right: 24 }}>
-                <div className="fb-icon">
-                  <Icon name="heart-pulse" size={18} />
-                </div>
-                <div>
-                  <strong>UTI Móvel</strong>
-                  <span>Equipada para alta complexidade</span>
-                </div>
-              </div>
+              <a
+                href="https://unimedfortaleza.com.br/minha-unimed/cliente/opcionais"
+                className="btn-green"
+                style={{ width: "100%", justifyContent: "center", marginTop: 32 }}
+              >
+                <Icon name="building-2" size={15} />
+                Solicitar orçamento
+              </a>
             </div>
           </div>
         </div>
       </section>
 
+      <section className="section" id="aeromedico">
+        <div className="container">
+          <div className="split reverse split-service">
+            <div className="split-service__top">
+              <div className="label-tag">Serviço 02</div>
+              <h2 style={{ marginBottom: 16 }}>
+                Aeromédico Unimed: A distância não é obstáculo para o melhor cuidado.
+              </h2>
+              <p className="intro-text">
+                Transporte inter-hospitalar de alta complexidade, unindo agilidade aérea a suporte médico completo para garantir segurança absoluta.
+              </p>
+            </div>
+
+            <div className="fig-wrap col-img">
+              <div className="fig-main" style={{ height: 560 }}>
+                <img
+                  src="/assets/Gemini_Generated_Image_c9cl6rc9cl6rc9cl.png"
+                  alt=""
+                  style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "center center", display: "block", transform: "scale(1.15)", transformOrigin: "center center" }}
+                />
+              </div>
+              <div className="fig-badge" style={{ bottom: -18, left: 24 }}>
+                <div className="fb-icon">
+                  <Icon name="globe" size={18} />
+                </div>
+                <div>
+                  <strong>Cobertura nacional</strong>
+                  <span>Aeronaves com tecnologia de ponta</span>
+                </div>
+              </div>
+            </div>
+
+            <div className="split-service__bottom">
+              <div style={{ marginTop: 32 }}>
+                <div className="feature-row">
+                  <div className="fr-icon">
+                    <Icon name="globe" size={20} />
+                  </div>
+                  <div className="fr-text">
+                    <strong>Atendimento para todos os estados do Brasil</strong>
+                    <p>Disponível 7 dias por semana em todo o território brasileiro.</p>
+                  </div>
+                </div>
+                <div className="feature-row">
+                  <div className="fr-icon">
+                    <Icon name="plane" size={20} />
+                  </div>
+                  <div className="fr-text">
+                    <strong>UTI Aérea de Ponta</strong>
+                    <p>Aeronaves com modernos recursos tecnológicos para suporte à vida.</p>
+                  </div>
+                </div>
+                <div className="feature-row">
+                  <div className="fr-icon">
+                    <Icon name="user-check" size={20} />
+                  </div>
+                  <div className="fr-text">
+                    <strong>Equipe Especializada</strong>
+                    <p>Médicos e enfermeiros altamente qualificados em medicina aeroespacial.</p>
+                  </div>
+                </div>
+                <div className="feature-row">
+                  <div className="fr-icon">
+                    <Icon name="baby" size={20} />
+                  </div>
+                  <div className="fr-text">
+                    <strong>Referência Neonatal e Pediátrica</strong>
+                    <p>Expertise no transporte seguro de recém-nascidos e crianças.</p>
+                  </div>
+                </div>
+                <div className="feature-row">
+                  <div className="fr-icon">
+                    <Icon name="navigation" size={20} />
+                  </div>
+                  <div className="fr-text">
+                    <strong>Serviço de Repatriamento</strong>
+                    <p>Transferência para sua rede de origem — retorno ao local de domicílio para continuidade do tratamento.</p>
+                  </div>
+                </div>
+              </div>
+
+              <a
+                href="https://unimedfortaleza.com.br/minha-unimed/cliente/opcionais"
+                className="btn-green"
+                style={{ marginTop: 32, display: "flex", width: "100%", justifyContent: "center" }}
+              >
+                <Icon name="plus-circle" size={15} />
+                Contratar
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+
       <section className="section" id="area-protegida">
         <div className="container">
-          <div className="split reverse">
+          <div className="split split-service">
+            <div className="split-service__top">
+              <div style={{ display: "flex", alignItems: "center", gap: 20 }}>
+                <div className="label-tag white">Serviço 03</div>
+                <div className="tag-pill">
+                  <Icon name="building-2" size={13} />
+                  Disponível para empresas não clientes Unimed
+                </div>
+              </div>
+              <h2 className="white" style={{ marginBottom: 16 }}>
+                Área Protegida: Segurança para o seu negócio.
+              </h2>
+              <p className="intro-text white">
+                Transforme seu estabelecimento em um ambiente de cuidado absoluto. Com
+                o Área Protegida, a Unimed Fortaleza estende sua excelência médica para
+                dentro da sua empresa, oferecendo assistência pré-hospitalar de urgência e
+                emergência a todos os presentes, garantindo tranquilidade para quem circula.
+              </p>
+            </div>
+
             <div className="fig-wrap col-img">
               <div className="fig-main" style={{ height: 500 }}>
                 <img
@@ -692,32 +821,26 @@ export default function Page() {
                   style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }}
                 />
               </div>
-              <div className="fig-badge" style={{ bottom: -18, left: 24 }}>
-                <div className="fb-icon">
+              <div
+                className="fig-badge"
+                style={{
+                  bottom: -18,
+                  right: 24,
+                  background: "rgba(20,40,25,0.95)",
+                  border: "1px solid rgba(93,204,138,0.3)",
+                }}
+              >
+                <div className="fb-icon" style={{ background: "rgba(93,204,138,0.15)", color: "var(--accent)" }}>
                   <Icon name="building-2" size={18} />
                 </div>
                 <div>
-                  <strong>Para empresas</strong>
-                  <span>Não exige plano ativo</span>
+                  <strong style={{ color: "#fff" }}>Para empresas</strong>
+                  <span style={{ color: "rgba(255,255,255,0.6)" }}>Não exige plano ativo</span>
                 </div>
               </div>
             </div>
 
-            <div>
-              <div style={{ display: "flex", alignItems: "center", gap: 20 }}>
-                <div className="label-tag">Serviço 02</div>
-                <div className="tag-pill">
-                  <Icon name="building-2" size={13} />
-                  Disponível para empresas não clientes Unimed
-                </div>
-              </div>
-              <h2 style={{ marginBottom: 16 }}>
-                Unimed Urgente Área Protegida: Segurança para o seu negócio.
-              </h2>
-              <p className="intro-text">
-                Garantia de primeiro atendimento médico de urgência para qualquer pessoa dentro do perímetro da sua empresa — colaboradores, clientes ou parceiros.
-              </p>
-
+            <div className="split-service__bottom">
               <div className="cards-2col">
                 <div className="mini-card">
                   <div className="mc-icon">
@@ -735,29 +858,17 @@ export default function Page() {
                 </div>
                 <div className="mini-card">
                   <div className="mc-icon">
-                    <Icon name="heart-handshake" size={18} />
+                    <Icon name="truck" size={18} />
                   </div>
-                  <h4>Responsabilidade Social</h4>
-                  <p>Empresa vocacionada para o cuidado de todos.</p>
+                  <h4>Remoção para a Emergência Certa</h4>
+                  <p>Garantimos o transporte para a unidade hospitalar adequada ao perfil do paciente (Privada ou SUS).</p>
                 </div>
                 <div className="mini-card">
                   <div className="mc-icon">
-                    <Icon name="users" size={18} />
-                  </div>
-                  <h4>Equipe 24h</h4>
-                  <p>Rastreamento e acionamento a qualquer hora.</p>
-                </div>
-                <div
-                  className="mini-card"
-                  style={{ gridColumn: "1/-1", display: "flex", alignItems: "center", gap: 14 }}
-                >
-                  <div className="mc-icon" style={{ flexShrink: 0 }}>
                     <Icon name="signpost" size={18} />
                   </div>
-                  <div>
-                    <h4 style={{ marginBottom: 3 }}>Sinalização Área Protegida</h4>
-                    <p>Espaço sinalizado e colaboradores habilitados como acionadores.</p>
-                  </div>
+                  <h4>Sinalização Área Protegida</h4>
+                  <p>Espaço da empresa sinalizado, transmitindo segurança e cuidado, e colaboradores treinados em como acionar o atendimento.</p>
                 </div>
               </div>
 
@@ -767,131 +878,8 @@ export default function Page() {
                 style={{ width: "100%", justifyContent: "center" }}
               >
                 <Icon name="building-2" size={15} />
-                Solicitar orçamento para minha empresa
+                Solicitar orçamento
               </a>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <div className="stats-strip">
-        <div className="container">
-          <div className="stats-inner">
-            <div className="stat-col">
-              <span className="num">30+</span>
-              <span className="lbl">Anos em remoção terrestre</span>
-            </div>
-            <div className="stat-col">
-              <span className="num">24h</span>
-              <span className="lbl">Disponível todos os dias</span>
-            </div>
-            <div className="stat-col">
-              <span className="num">100%</span>
-              <span className="lbl">Cobertura nacional aérea</span>
-            </div>
-            <div className="stat-col">
-              <span className="num">3</span>
-              <span className="lbl">Serviços complementares</span>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <section className="section" id="aeromedico">
-        <div className="container">
-          <div className="split">
-            <div>
-              <div className="label-tag white">Serviço 03</div>
-              <h2 className="white" style={{ marginBottom: 16 }}>
-                Aeromédico Unimed: A distância não é obstáculo para o melhor cuidado.
-              </h2>
-              <p className="intro-text white">
-                Transporte inter-hospitalar de alta complexidade, unindo agilidade aérea a suporte médico completo para garantir segurança absoluta.
-              </p>
-
-              <div style={{ marginTop: 32 }}>
-                <div className="feature-row" style={{ borderColor: "rgba(255,255,255,0.1)" }}>
-                  <div className="fr-icon dark">
-                    <Icon name="globe" size={20} />
-                  </div>
-                  <div className="fr-text white">
-                    <strong>Cobertura Nacional 24h</strong>
-                    <p>Disponível 7 dias por semana em todo o território brasileiro.</p>
-                  </div>
-                </div>
-                <div className="feature-row" style={{ borderColor: "rgba(255,255,255,0.1)" }}>
-                  <div className="fr-icon dark">
-                    <Icon name="plane" size={20} />
-                  </div>
-                  <div className="fr-text white">
-                    <strong>UTI Aérea de Ponta</strong>
-                    <p>Aeronaves com modernos recursos tecnológicos para suporte à vida.</p>
-                  </div>
-                </div>
-                <div className="feature-row" style={{ borderColor: "rgba(255,255,255,0.1)" }}>
-                  <div className="fr-icon dark">
-                    <Icon name="user-check" size={20} />
-                  </div>
-                  <div className="fr-text white">
-                    <strong>Equipe Própria Especializada</strong>
-                    <p>Médicos e enfermeiros em medicina aeroespacial.</p>
-                  </div>
-                </div>
-                <div className="feature-row" style={{ borderColor: "rgba(255,255,255,0.1)" }}>
-                  <div className="fr-icon dark">
-                    <Icon name="baby" size={20} />
-                  </div>
-                  <div className="fr-text white">
-                    <strong>Referência Neonatal e Pediátrica</strong>
-                    <p>Expertise no transporte seguro de recém-nascidos e crianças.</p>
-                  </div>
-                </div>
-                <div className="feature-row" style={{ borderColor: "rgba(255,255,255,0.1)" }}>
-                  <div className="fr-icon dark">
-                    <Icon name="home" size={20} />
-                  </div>
-                  <div className="fr-text white">
-                    <strong>Serviço de Repatriamento</strong>
-                    <p>Retorno ao domicílio para continuidade do tratamento.</p>
-                  </div>
-                </div>
-              </div>
-
-              <a
-                href="https://unimedfortaleza.com.br/minha-unimed/cliente/opcionais"
-                className="btn-white"
-                style={{ marginTop: 32, display: "flex", width: "100%", justifyContent: "center" }}
-              >
-                <Icon name="plus-circle" size={15} />
-                Contratar
-              </a>
-            </div>
-
-            <div className="fig-wrap col-img">
-              <div className="fig-main" style={{ height: 560, background: "rgba(255,255,255,0.04)" }}>
-                <img
-                  src="/assets/eli.png"
-                  alt=""
-                  style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }}
-                />
-              </div>
-              <div
-                className="fig-badge"
-                style={{
-                  bottom: -18,
-                  right: 24,
-                  background: "rgba(20,40,25,0.95)",
-                  border: "1px solid rgba(93,204,138,0.3)",
-                }}
-              >
-                <div className="fb-icon" style={{ background: "rgba(93,204,138,0.15)", color: "var(--accent)" }}>
-                  <Icon name="globe" size={18} />
-                </div>
-                <div>
-                  <strong style={{ color: "#fff" }}>Cobertura nacional</strong>
-                  <span style={{ color: "rgba(255,255,255,0.6)" }}>7 dias por semana</span>
-                </div>
-              </div>
             </div>
           </div>
         </div>
@@ -972,6 +960,40 @@ export default function Page() {
                   <div className="step-c">
                     <strong>Transporte com UTI aérea</strong>
                     <span>Aeronave equipada realiza a remoção com segurança total.</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div className="sol-block">
+              <h3>
+                <span className="dot" style={{ background: "#00843D" }} />
+                Área Protegida
+              </h3>
+              <div className="steps">
+                <div className="step">
+                  <div className="step-n">1</div>
+                  <div className="step-c">
+                    <strong>Acione pelo número exclusivo</strong>
+                    <span>Informe o nome da empresa e o local da ocorrência.</span>
+                    <div className="phone-tag">
+                      <Icon name="phone" size={15} />
+                      0800 275 0123
+                    </div>
+                  </div>
+                </div>
+                <div className="step">
+                  <div className="step-n">2</div>
+                  <div className="step-c">
+                    <strong>Central registra e despacha</strong>
+                    <span>A equipe mais próxima é acionada imediatamente para o endereço.</span>
+                  </div>
+                </div>
+                <div className="step">
+                  <div className="step-n">3</div>
+                  <div className="step-c">
+                    <strong>Atendimento no local</strong>
+                    <span>Profissionais prestam socorro e realizam remoção para a unidade adequada, se necessário.</span>
                   </div>
                 </div>
               </div>
