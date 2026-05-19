@@ -2,7 +2,7 @@
    UNI DS — Unimed Design System (tokens)
    ============================================================ */
 
-@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;900&family=Inter:wght@400;500;600;700&display=swap");
+/* @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;900&family=Inter:wght@400;500;600;700&display=swap"); */
 
 /* NOTE: "Unimed Sans" is a proprietary brand font used only for the
    "U." logo mark. We substitute Poppins Black (weight 900) as a
@@ -17,10 +17,10 @@
 } */
 
 :root {
-  --font-display: "Unimed Sans", "Poppins", sans-serif;
-  --font-heading: "Poppins", sans-serif;
-  --font-body: "Poppins", sans-serif;
-  --font-data: "Inter", sans-serif;
+  --font-display: "Unimed Sans", var(--font-unimed-sans), "Poppins", sans-serif;
+  --font-heading: var(--font-unimed-sans), "Poppins", sans-serif;
+  --font-body: var(--font-unimed-sans), "Poppins", sans-serif;
+  --font-data: var(--font-unimed-sans), "Inter", sans-serif;
 }
 
 /* ============================================================
@@ -40,7 +40,7 @@ html {
 }
 
 body {
-  font-family: "Poppins", sans-serif;
+  font-family: var(--font-unimed-sans), "Poppins", sans-serif;
   color: #1a2e1a;
   background: #fbf2ee;
   -webkit-font-smoothing: antialiased;
@@ -67,7 +67,7 @@ a {
    ============================================================ */
 
 .unimed-site-header {
-  font-family: "Poppins", sans-serif;
+  font-family: var(--font-unimed-sans), "Poppins", sans-serif;
   -webkit-font-smoothing: antialiased;
 }
 
@@ -134,7 +134,7 @@ a {
   align-items: center;
   gap: 5px;
   color: #e8f5ec;
-  font-family: "Poppins", sans-serif;
+  font-family: var(--font-unimed-sans), "Poppins", sans-serif;
   font-size: 11px;
   font-weight: 400;
   padding: 0 0 0 16px;
@@ -226,7 +226,7 @@ a {
   display: flex;
   align-items: center;
   gap: 4px;
-  font-family: "Poppins", sans-serif;
+  font-family: var(--font-unimed-sans), "Poppins", sans-serif;
   font-size: 11px;
   font-weight: 600;
   letter-spacing: 0.15px;
@@ -265,7 +265,7 @@ a {
   align-items: center;
   background: #f57c20;
   color: #fff;
-  font-family: "Poppins", sans-serif;
+  font-family: var(--font-unimed-sans), "Poppins", sans-serif;
   font-size: 11.5px;
   font-weight: 700;
   letter-spacing: 0.4px;
@@ -285,7 +285,7 @@ a {
   display: inline-flex;
   align-items: center;
   color: #fff;
-  font-family: "Poppins", sans-serif;
+  font-family: var(--font-unimed-sans), "Poppins", sans-serif;
   font-size: 11.5px;
   font-weight: 600;
   letter-spacing: 0.3px;
@@ -367,7 +367,7 @@ a {
 }
 
 .scroll-hint-text {
-  font-family: "Inter", sans-serif;
+  font-family: var(--font-unimed-sans), "Inter", sans-serif;
   font-size: 8.6px;
   font-weight: 800;
   letter-spacing: 0.16em;
@@ -416,7 +416,7 @@ a {
   gap: 8px;
   background: var(--green);
   color: #fff;
-  font-family: "Poppins", sans-serif;
+  font-family: var(--font-unimed-sans), "Poppins", sans-serif;
   font-size: 14px;
   font-weight: 600;
   padding: 13px 28px;
@@ -436,7 +436,7 @@ a {
   gap: 8px;
   background: rgba(255, 255, 255, 0.12);
   color: #fff;
-  font-family: "Poppins", sans-serif;
+  font-family: var(--font-unimed-sans), "Poppins", sans-serif;
   font-size: 14px;
   font-weight: 600;
   padding: 13px 28px;
@@ -455,7 +455,7 @@ a {
   gap: 8px;
   background: #fff;
   color: var(--green);
-  font-family: "Poppins", sans-serif;
+  font-family: var(--font-unimed-sans), "Poppins", sans-serif;
   font-size: 14px;
   font-weight: 600;
   padding: 13px 28px;
@@ -473,7 +473,7 @@ a {
   gap: 8px;
   background: transparent;
   color: var(--green);
-  font-family: "Poppins", sans-serif;
+  font-family: var(--font-unimed-sans), "Poppins", sans-serif;
   font-size: 14px;
   font-weight: 600;
   padding: 12px 28px;
@@ -1578,7 +1578,7 @@ footer {
   padding: 24px;
   box-shadow: 0 8px 40px rgba(0, 0, 0, 0.12);
   width: 280px;
-  font-family: "Poppins", sans-serif;
+  font-family: var(--font-unimed-sans), "Poppins", sans-serif;
 }
 #tweaks-panel.open {
   display: block;
@@ -1627,7 +1627,7 @@ footer {
 }
 .tw-tog button {
   flex: 1;
-  font-family: "Poppins", sans-serif;
+  font-family: var(--font-unimed-sans), "Poppins", sans-serif;
   font-size: 12px;
   font-weight: 500;
   padding: 7px 0;
@@ -1696,7 +1696,7 @@ footer {
   justify-content: space-between;
   width: 100%;
   color: #fff;
-  font-family: "Poppins", sans-serif;
+  font-family: var(--font-unimed-sans), "Poppins", sans-serif;
   font-size: 15px;
   font-weight: 600;
   padding: 18px 24px;

@@ -340,7 +340,7 @@ const _HERO_SVG = `
   <rect x="30" y="570" width="60" height="36" rx="5" fill="rgba(200,230,255,0.3)"/>
   <rect x="108" y="578" width="10" height="26" rx="2" fill="rgba(255,255,255,0.9)"/>
   <rect x="102" y="586" width="22" height="10" rx="2" fill="rgba(255,255,255,0.9)"/>
-  <text x="108" y="632" font-family="Poppins,sans-serif" font-size="9" fill="rgba(255,255,255,0.8)" font-weight="700">UNIMED URGENTE</text>
+  <text x="108" y="632" font-family="var(--font-unimed-sans),sans-serif" font-size="9" fill="rgba(255,255,255,0.8)" font-weight="700">UNIMED URGENTE</text>
   <ellipse cx="155" cy="560" rx="10" ry="6" fill="#ff4444" opacity="0.9"/>
 
   <path d="M540 0 L600 0 L600 200 Z" fill="rgba(93,204,138,0.06)"/>
